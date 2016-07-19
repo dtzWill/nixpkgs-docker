@@ -13,7 +13,10 @@ RUN dir=`mktemp -d` && trap 'rm -rf "$dir"' EXIT && \
         nixbld$n; \
     done && \ 
     mkdir -m 0755 /nix && USER=root sh $dir/*/install && \
-    echo ". /root/.nix-profile/etc/profile.d/nix.sh" >> /etc/profile
+    echo ". /root/.nix-profile/etc/profile.d/nix.sh" >> /etc/profile && \
+    . /etc/profile && \
+    nix-env -u && \
+    nix-env -q
 
 ONBUILD ENV PATH /root/.nix-profile/bin:/root/.nix-profile/sbin:/bin:/sbin:/usr/bin:/usr/sbin
 ONBUILD ENV ENV /etc/profile
