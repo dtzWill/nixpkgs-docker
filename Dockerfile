@@ -16,6 +16,8 @@ RUN dir=`mktemp -d` && trap 'rm -rf "$dir"' EXIT && \
     echo ". /root/.nix-profile/etc/profile.d/nix.sh" >> /etc/profile && \
     . /etc/profile && \
     nix-env -u && \
+    nix-collect-garbage --delete-old && \
+    nix-store --optimize && \
     nix-env -q
 
 ONBUILD ENV PATH /root/.nix-profile/bin:/root/.nix-profile/sbin:/bin:/sbin:/usr/bin:/usr/sbin
