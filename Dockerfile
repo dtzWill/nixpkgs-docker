@@ -19,7 +19,7 @@ ENV USER user
 WORKDIR /home/user
 
 RUN dir=`mktemp -d` && trap 'rm -rf "$dir"' EXIT && \
-    wget -O- http://nixos.org/releases/nix/nix-1.11.3/nix-1.11.3-x86_64-linux.tar.bz2  | bzcat | tar x -C $dir && \
+    wget -O- http://nixos.org/releases/nix/nix-1.11.8/nix-1.11.8-x86_64-linux.tar.bz2  | bzcat | tar x -C $dir && \
     sh $dir/*/install && \
     find /nix/store -type f -exec chmod -w {} ';' && \
     . /etc/profile && \
