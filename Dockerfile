@@ -24,6 +24,7 @@ RUN dir=`mktemp -d` && trap 'rm -rf "$dir"' EXIT && \
     find /nix/store -type f -exec chmod -w {} ';' && \
     . /etc/profile && \
     nix-env -u && \
+    nix-env -iA nixpkgs.nixUnstable && \
     nix-collect-garbage --delete-old && \
     nix-store --optimize && \
     nix-env -q
