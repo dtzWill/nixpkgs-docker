@@ -9,7 +9,7 @@ RUN addgroup -S nixbld && \
         -S \
         -D \
         nixbld$n; \
-    done && \ 
+    done && \
     adduser -D --gecos '' user && \
     mkdir -m 0755 /nix && chown user /nix && \
     echo ". /home/user/.nix-profile/etc/profile.d/nix.sh" >> /etc/profile
